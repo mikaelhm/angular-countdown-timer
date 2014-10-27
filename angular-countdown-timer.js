@@ -49,6 +49,6 @@ function countdownTimerDirective() {
 
         }
     };
-});
+}
 
 angular.module('angularCountdownTimer', []).directive('timer', countdownTimerDirective);
