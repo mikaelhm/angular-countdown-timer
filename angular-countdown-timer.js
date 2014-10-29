@@ -8,6 +8,7 @@ function countdownTimerDirective() {
             active: "=",
             onZeroCallback: "="
         },
+        template:"{{formatted}}",
         controller: function ($scope, $attrs, $timeout) {
             $scope.format = $attrs.outputFormat;
 
@@ -41,15 +42,18 @@ function countdownTimerDirective() {
                 }
             });
             $scope.$watch('countdown', function (newValue, oldValue) {
-                if (newValue !== oldValue) {
-                    updateFormatted();
-                }
+                updateFormatted();
             });
 
             var updateFormatted = function () {
                 $scope.formatted = moment($scope.countdown * $scope.interval).format($scope.format);
             };
             updateFormatted();
+
+
+            $scope.$on('$destroy', function () {
+                $timeout.cancel($scope.timer);
+            });
 
         }
     };
