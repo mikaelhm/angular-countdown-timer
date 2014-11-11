@@ -37,7 +37,11 @@ function countdownTimerDirective() {
             $scope.$watch('active', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
                     if (newValue === true) {
-                        queueTick();
+                        if ($scope.countdown > 0) {
+                            queueTick();
+                        } else {
+                            $scope.active = false;
+                        }
                     } else {
                         $timeout.cancel($scope.timer);
                     }
