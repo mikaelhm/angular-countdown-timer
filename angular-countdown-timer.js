@@ -22,7 +22,9 @@ function countdownTimerDirective() {
                         } else {
                             $scope.countdown = 0;
                             $scope.active = false;
-                            $scope.onZeroCallback();
+                            if (!_.isUndefined($scope.onZeroCallback)) {
+                                $scope.onZeroCallback();
+                            }
                         }
                     }
                 }, $scope.interval);
