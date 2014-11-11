@@ -43,7 +43,7 @@ function countdownTimerDirective() {
                     }
                 }
             });
-            $scope.$watch('countdown', function (newValue, oldValue) {
+            $scope.$watch('countdown', function () {
                 updateFormatted();
             });
 
